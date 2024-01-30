@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
-router.get('/', async (req, res) => {
-  await Product.findAll({
+router.get('/', (req, res) => {
+  Product.findAll({
 		attributes: ["id", "product_name", "price", "stock", "category_id"],
 		include: [
 			{

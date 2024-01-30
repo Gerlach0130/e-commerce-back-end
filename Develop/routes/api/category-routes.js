@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
-router.get('/', async (req, res) => {
-  await Category.findAll({
+router.get('/', (req, res) => {
+  Category.findAll({
     attributes: ["id", "category_name"],
     include: [{
       model: Product,
@@ -14,8 +14,8 @@ router.get('/', async (req, res) => {
   })
 });
 
-router.get('/:id', async (req, res) => {
-  await Category.findByPk(req.params.id, {
+router.get('/:id', (req, res) => {
+  Category.findByPk(req.params.id, {
     attributes: ["id", "category_name"],
 		include: [
 			{
@@ -32,8 +32,8 @@ router.get('/:id', async (req, res) => {
   });
 });
 
-router.post('/', async (req, res) => {
-  await Category.create(req.body)
+router.post('/', (req, res) => {
+  Category.create(req.body)
 		.then((data) => 
       res.status(200).json(data))
 		.catch((err) => {
@@ -42,8 +42,8 @@ router.post('/', async (req, res) => {
 		});
 });
 
-router.put('/:id', async (req, res) => {
-    await Category.update(req.body, {
+router.put('/:id', (req, res) => {
+    Category.update(req.body, {
       where: {
         id: req.params.id,
       },
@@ -57,8 +57,8 @@ router.put('/:id', async (req, res) => {
     });
 });
 
-router.delete('/:id', async (req, res) => {
-  await Category.destroy({
+router.delete('/:id', (req, res) => {
+  Category.destroy({
 		where: {
 			id: req.params.id,
 		},

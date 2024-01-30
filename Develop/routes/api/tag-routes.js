@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 
-router.get('/', async (req, res) => {
-  await Tag.findAll({
+router.get('/', (req, res) => {
+  Tag.findAll({
     attributes: ["id", "tag_name"],
     include: [{
       model: Product,
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
   });
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', (req, res) => {
   Tag.findByPk(req.params.id, {
     include: [{
       model: Product,
